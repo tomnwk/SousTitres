@@ -2,7 +2,7 @@
 The word `Sous-titres` is french for subtitles. 
 
 With this program you will be able to download subtitles for your video files without
-too much interaction: the idea is to retrieve subtitles of by computing the video file hash and querying a provider remote api with it. For the time being, OpenSubtitles Xml-rpc api is being used.
+too much interaction: the idea is to retrieve subtitles by computing the video file hash and querying a provider remote api with it. For the time being, OpenSubtitles Xml-rpc api is being used.
 
 ## Execute
 
