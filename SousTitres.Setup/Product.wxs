@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:ui="http://schemas.microsoft.com/wix/UIExtension">
+  <Product Id="*" Name="SousTitres" Language="1033" Version="0.1" Manufacturer="https://github.com/tomnwk" UpgradeCode="763212c5-e1b8-4642-959c-8b48ec5e0806">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UIRef Id="WixUI_InstallDir" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="no" />
+
+    <Feature Id="ProductFeature" Title="SousTitres" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="SousTitres" />
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="CMP_Setup">
+        <File Id ="SubtitleDownloader.exe" Source="$(var.SubtitleDownloader.TargetDir)" KeyPath="yes"/>
+        <File Id ="SubtitleDownloader.exe.config" Source="$(var.SubtitleDownloader.TargetDir)" KeyPath="no"/>
+      </Component>
+      <Component Id="RegistryEntries" Guid="b1bb986e-c9de-4f41-bbf3-03606a312858" KeyPath="yes">
+        <RegistryKey Id="aviKey" Root="HKCR" Key="SystemFileAssociations\.avi\shell\NewPouet\command" ForceCreateOnInstall="yes" ForceDeleteOnUninstall="yes">
+          <RegistryValue Value="&quot;[INSTALLFOLDER]SubtitleDownloader.exe&quot; -file &quot;%1&quot;" Type="string" />
+        </RegistryKey>
+        <RegistryKey Id="mkvKey" Root="HKCR" Key="SystemFileAssociations\.mkv\shell\NewPouet\command" ForceCreateOnInstall="yes" ForceDeleteOnUninstall="yes">
+          <RegistryValue Value="&quot;[INSTALLFOLDER]SubtitleDownloader.exe&quot; -file &quot;%1&quot;" Type="string" />
+        </RegistryKey>
+        <RegistryKey Id="mp4Key" Root="HKCR" Key="SystemFileAssociations\.mp4\shell\NewPouet\command" ForceCreateOnInstall="yes" ForceDeleteOnUninstall="yes">
+          <RegistryValue Value="&quot;[INSTALLFOLDER]SubtitleDownloader.exe&quot; -file &quot;%1&quot;" Type="string" />
+        </RegistryKey>
+      </Component>
+      
+      <!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+      <!-- <Component Id="ProductComponent"> -->
+      <!-- TODO: Insert files, registry keys, and other resources here. -->
+      <!-- </Component> -->
+    </ComponentGroup>
+  </Fragment>
+</Wix>
