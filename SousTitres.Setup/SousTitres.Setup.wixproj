@@ -7,7 +7,7 @@
     <ProjectGuid>09d98ed7-b255-4c04-926f-4355f330fef1</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
     <OutputName>SousTitres.Setup</OutputName>
-    <OutputType>Bundle</OutputType>
+    <OutputType>Package</OutputType>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
     <Name>SousTitres.Setup</Name>
@@ -31,7 +31,7 @@
     </WixExtension>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SubtitleDownloader\SousTitres.csproj">
+    <ProjectReference Include="..\SousTitres\SousTitres.csproj">
       <Name>SousTitres</Name>
       <Project>{884b8fd9-96ef-4e60-b529-75fe9541e7b4}</Project>
       <Private>True</Private>
@@ -39,6 +39,9 @@
       <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
       <RefTargetDir>INSTALLFOLDER</RefTargetDir>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="gpl-2.0.rtf" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <!--
